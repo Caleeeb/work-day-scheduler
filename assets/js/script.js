@@ -1,3 +1,11 @@
+
+
+// display current day at the top of the app
+var timeDisplayEl = moment().format("dddd[, ] MMMM Mo YYYY");
+$('#currentDay').text(timeDisplayEl);
+
+
+
 //text modification
 // when row is clicked the p is edited
 $(".row").on("click", "p", function () {
@@ -12,4 +20,9 @@ $(".row").on("click", "p", function () {
 
 // save button puts to local storage
 
-// 
+var saveTasks = function () {
+    localStorage.setItem("tasks", textInput);
+};
+
+
+//
