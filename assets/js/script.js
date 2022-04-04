@@ -35,20 +35,25 @@ $(".row").on("keypress", "textarea", function (event) {
 
 // save to local storage after save button click
 $(".saveBtn").on("click", function () {
-    console.log("shooot");
     localStorage.setItem("scheduleData", JSON.stringify(textObj));
 });
 
 // apon reload, get object key and value from local storage on load
-$(window).on("load", function () {
+$(window).on("load", function (event) {
     textObj = JSON.parse(localStorage.getItem("scheduleData"));
-    for (var key in textObj) {
-        $("#" + key).find("textarea").text(textObj[key]);
+    console.log(textObj);
+    if (textObj !== null) {
+        for (var key in textObj) {
+            $("#" + key).find("textarea").text(textObj[key]);
+        }
+    }
+    else {
+        textObj = {};
     }
     checkHour();
 });
 
-//variable to check time 
+// variable to check time
 var checkHour = function () {
     $(".row").each(function () {
         var id = $(this).attr('id');
