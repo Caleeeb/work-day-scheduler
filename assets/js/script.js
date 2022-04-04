@@ -3,20 +3,22 @@ let tasks = {};
 
 let textObj = {};
 
-var now = moment();
+let now = moment();
+
+let currentHour = now.hour();
+
 
 
 // display current day at the top of the app
 var timeDisplayEl = moment().format("dddd[, ] MMMM Mo YYYY");
 $("#currentDay").text(timeDisplayEl);
 
+// TEXT MODIFICATION
 
-
-//text modification
 // when row is clicked the p is edited
 $(".row").on("click", "p", function () {
     var tasks = $(this)
-        .text()
+        .text();
     // p is turned into a textarea
     var textInput = $("<textarea>")
         .addClass("w-100 h-50")
@@ -43,9 +45,8 @@ $(window).on("load", function () {
     for (var key in textObj) {
         $("#" + key).find("textarea").text(textObj[key]);
     }
+    checkHour();
 });
-
-
 
 //variable to check time 
 var checkHour = function () {
@@ -55,20 +56,13 @@ var checkHour = function () {
         var elementHour = parseInt(splitId[1]);
 
         if (elementHour < currentHour) {
-            $(this).addClass(".past");
+            $(this).addClass("past");
 
         } else if (elementHour === currentHour) {
-            $(this).addClass(".present");
+            $(this).addClass("present");
 
         } else if (elementHour > currentHour) {
-            $(this)
-
+            $(this).addClass("future");
         }
-
     });
 }
-
-// display any text that 
-var loadTasks = function () {
-    tasks = JSON.parse(localStorage.getItem("tasks"));
-};
