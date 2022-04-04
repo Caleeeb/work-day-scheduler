@@ -31,6 +31,7 @@ $(".row").on("click", "p", function () {
 $(".row").on("keypress", "textarea", function (event) {
     var getParent = $(this).parent().parent().attr('id');
     textObj[getParent] = $(this).val() + String.fromCharCode(event.keyCode);
+
 });
 
 // save to local storage after save button click
@@ -42,11 +43,13 @@ $(".saveBtn").on("click", function () {
 $(window).on("load", function (event) {
     textObj = JSON.parse(localStorage.getItem("scheduleData"));
     console.log(textObj);
+    // check if the there are empty values in local storage
     if (textObj !== null) {
         for (var key in textObj) {
             $("#" + key).find("textarea").text(textObj[key]);
         }
     }
+    // if the local storage value is null
     else {
         textObj = {};
     }
