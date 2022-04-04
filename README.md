@@ -15,4 +15,4 @@ link: https://caleeeb.github.io/work-day-scheduler/
 *current hour: red
 *future hour: green
 
-## Enojoy!
+## Enjoy!
