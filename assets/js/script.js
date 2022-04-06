@@ -13,23 +13,9 @@ let currentHour = now.hour();
 var timeDisplayEl = moment().format("dddd[, ] MMMM Mo YYYY");
 $("#currentDay").text(timeDisplayEl);
 
-// TEXT MODIFICATION
-
-// when row is clicked the p is edited
-$(".row").on("click", "p", function () {
-    var tasks = $(this)
-        .text();
-    // p is turned into a textarea
-    var textInput = $("<textarea>")
-        .addClass("w-100 h-50")
-        .val(tasks);
-    $(this).replaceWith(textInput);
-
-});
-
 // setting the object for future saving through save button
 $(".row").on("keypress", "textarea", function (event) {
-    var getParent = $(this).parent().parent().attr('id');
+    var getParent = $(this).parent().attr('id');
     textObj[getParent] = $(this).val() + String.fromCharCode(event.keyCode);
 
 });
@@ -64,13 +50,13 @@ var checkHour = function () {
         var elementHour = parseInt(splitId[1]);
 
         if (elementHour < currentHour) {
-            $(this).addClass("past");
+            $(this).children("textarea").addClass("past");
 
         } else if (elementHour === currentHour) {
-            $(this).addClass("present");
+            $(this).children("textarea").addClass("present");
 
         } else if (elementHour > currentHour) {
-            $(this).addClass("future");
+            $(this).children("textarea").addClass("future");
         }
     });
 }
